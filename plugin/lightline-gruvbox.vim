@@ -45,20 +45,31 @@ if exists('g:lightline')
   let s:neutral_aqua   = ['#689d6a', 72]
   let s:neutral_orange = ['#d65d0e', 166]
 
-  let s:middle = [ s:gray, s:bg0 ]
+  let s:middle = [ s:gray, s:bg1 ]
 
-  let s:normal = s:fg1
-  let s:normal_bright = s:fg3
-  let s:insert = s:blue
-  let s:insert_bright = s:neutral_blue
-  let s:terminal = s:blue
-  let s:terminal_bright = s:neutral_blue
-  let s:replace = s:green
-  let s:replace_bright = s:neutral_green
-  let s:visual = s:orange
-  let s:visual_bright = s:neutral_orange
-  let s:command = s:yellow
-  let s:command_bright = s:yellow
+  let s:inactive = s:bg2
+  let s:inactive_bright = s:bg3
+  let s:inactive_fg = s:fg4
+
+  let s:normal = s:fg3
+  let s:normal_bright = s:fg1
+
+  let s:insert = s:neutral_blue
+  let s:insert_bright = s:blue
+
+  let s:replace = s:neutral_aqua
+  let s:replace_bright = s:aqua
+
+  let s:visual = s:neutral_orange
+  let s:visual_bright = s:orange
+
+  let s:terminal = s:neutral_green
+  let s:terminal_bright = s:green
+
+  let s:command = s:neutral_purple
+  let s:command_bright = s:purple
+
+  let s:inner_bg = s:bg2
 
   let s:p = {
         \ 'normal':{},
@@ -71,36 +82,35 @@ if exists('g:lightline')
         \ 'command':{}
         \ }
 
-  " TODO: improve
-  let s:p.inactive.right  = [ [ s:bg0,  s:bg3 ], [ s:bg3, s:bg1, 'bold' ], [ s:bg3, s:bg0, 'bold' ] ]
-  let s:p.inactive.left   = [ [ s:bg3,  s:bg1 ] ]
+  let s:p.inactive.right  = [ [ s:inactive_fg, s:inactive ], [ s:inactive_fg, s:inactive_bright ], [ s:inactive_fg, s:bg3 ] ]
+  let s:p.inactive.left   = [ [ s:inactive_fg, s:inactive ] ]
   let s:p.inactive.middle = [ s:middle  ]
 
-  let s:p.normal.left   = [ [ s:bg0,  s:normal ], [ s:bg0, s:normal_bright ], [ s:normal, s:bg1 ] ]
-  let s:p.normal.right  = [ [ s:bg0,  s:normal ], [ s:bg0, s:normal_bright ], [ s:normal, s:bg1 ] ]
+  let s:p.normal.left   = [ [ s:bg0,  s:normal ], [ s:bg0, s:normal_bright ], [ s:normal_bright, s:inner_bg ] ]
+  let s:p.normal.right  = [ [ s:bg0,  s:normal ], [ s:bg0, s:normal_bright ], [ s:normal_bright, s:inner_bg ] ]
   let s:p.normal.middle = [ s:middle  ]
 
-  let s:p.insert.left   = [ [ s:bg0,  s:insert, 'bold'], [ s:bg0, s:insert_bright ], [ s:insert, s:bg1 ] ]
-  let s:p.insert.right  = [ [ s:bg0,  s:insert ],        [ s:bg0, s:insert_bright ], [ s:insert, s:bg1 ] ]
+  let s:p.insert.left   = [ [ s:bg0,  s:insert, 'bold'], [ s:bg0, s:insert_bright ], [ s:insert_bright, s:inner_bg ] ]
+  let s:p.insert.right  = [ [ s:bg0,  s:insert ],        [ s:bg0, s:insert_bright ], [ s:insert_bright, s:inner_bg ] ]
   let s:p.insert.middle = [ s:middle ]
 
-  let s:p.replace.left   = [ [ s:bg0,  s:replace, 'bold'], [ s:bg0, s:replace_bright ], [ s:replace, s:bg1 ] ]
-  let s:p.replace.right  = [ [ s:bg0,  s:replace ],        [ s:bg0, s:replace_bright ], [ s:replace, s:bg1 ] ]
+  let s:p.replace.left   = [ [ s:bg0,  s:replace, 'bold'], [ s:bg0, s:replace_bright ], [ s:replace_bright, s:inner_bg ] ]
+  let s:p.replace.right  = [ [ s:bg0,  s:replace ],        [ s:bg0, s:replace_bright ], [ s:replace_bright, s:inner_bg ] ]
   let s:p.replace.middle = [ s:middle ]
 
-  let s:p.visual.left   = [ [ s:bg0,  s:visual, 'bold'], [ s:bg0, s:visual_bright ], [ s:visual, s:bg1 ] ]
-  let s:p.visual.right  = [ [ s:bg0,  s:visual ],        [ s:bg0, s:visual_bright ], [ s:visual, s:bg1 ] ]
+  let s:p.visual.left   = [ [ s:bg0,  s:visual, 'bold'], [ s:bg0, s:visual_bright ], [ s:visual_bright, s:inner_bg ] ]
+  let s:p.visual.right  = [ [ s:bg0,  s:visual ],        [ s:bg0, s:visual_bright ], [ s:visual_bright, s:inner_bg ] ]
   let s:p.visual.middle = [ s:middle ]
 
-  let s:p.terminal.left   = [ [ s:bg0,  s:terminal, 'bold'], [ s:bg0, s:terminal_bright ], [ s:terminal, s:bg1 ] ]
-  let s:p.terminal.right  = [ [ s:bg0,  s:terminal ],        [ s:bg0, s:terminal_bright ], [ s:terminal, s:bg1 ] ]
+  let s:p.terminal.left   = [ [ s:bg0,  s:terminal, 'bold'], [ s:bg0, s:terminal_bright ], [ s:terminal_bright, s:inner_bg ] ]
+  let s:p.terminal.right  = [ [ s:bg0,  s:terminal ],        [ s:bg0, s:terminal_bright ], [ s:terminal_bright, s:inner_bg ] ]
   let s:p.terminal.middle = [ s:middle ]
 
-  let s:p.command.left   = [ [ s:bg0,  s:command, 'bold'], [ s:bg0, s:command_bright ], [ s:command, s:bg1 ] ]
-  let s:p.command.right  = [ [ s:bg0,  s:command ],        [ s:bg0, s:command_bright ], [ s:command, s:bg1 ] ]
+  let s:p.command.left   = [ [ s:bg0,  s:command, 'bold'], [ s:bg0, s:command_bright ], [ s:command_bright, s:inner_bg ] ]
+  let s:p.command.right  = [ [ s:bg0,  s:command ],        [ s:bg0, s:command_bright ], [ s:command_bright, s:inner_bg ] ]
   let s:p.command.middle = [ s:middle ]
 
-  let s:p.tabline.left = [ [ s:fg1, s:bg1 ] ]
+  let s:p.tabline.left = [ [ s:inactive_fg, s:inactive ] ]
   let s:p.tabline.tabsel = [ [ s:bg0, s:blue, 'bold' ] ]
   let s:p.tabline.middle = [ s:middle ]
   let s:p.tabline.right = [ [ s:bg0, s:bg4 ] ]
@@ -109,10 +119,11 @@ if exists('g:lightline')
   let s:p.normal.warning = [ [ s:bg2, s:yellow ] ]
 
   let g:lightline#colorscheme#gruvbox#palette = lightline#colorscheme#flatten(s:p)
+
+  " to try recent saved cahgnes, uncomment lines below and `:w` then `:so %`
+  " let g:lightline.colorscheme = 'gruvbox'
+  " call lightline#init()
+  " call lightline#colorscheme()
+  " call lightline#update()
 endif
 
-" to try recent saved cahgnes, uncomment lines below and `:w` then `:so %`
-let g:lightline.colorscheme = 'gruvbox'
-call lightline#init()
-call lightline#colorscheme()
-call lightline#update()
